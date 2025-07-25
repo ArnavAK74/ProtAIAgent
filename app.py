@@ -216,7 +216,7 @@ Answer:"""
                     use_container_width=True
                 )
                 with st.expander("🧬 Sequence Information (Click to expand)"):
-                    for seq in gpt_summarygpt_summary.get("Sequence", []):
+                    for seq in gpt_summary.get("Sequence", []):
                         st.markdown(f"- {seq}")
 
             else:
