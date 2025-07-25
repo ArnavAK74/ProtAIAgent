@@ -29,7 +29,14 @@ st.title("🔬 Protein Literature Assistant")
 
 with st.sidebar:
     st.header("🔍 Input")
-    pdb_id        = st.text_input("Enter PDB ID:", "6M0J").strip()
+    input_type = st.radio("Select Input Type:", ["PDB ID", "Protein Sequence"])
+    if input_type == "PDB ID":
+        pdb_id = st.text_input("Enter PDB ID (e.g., 1LYZ)").strip()
+        sequence = None
+    else:
+        sequence = st.text_area("Enter Protein Sequence (FASTA format or plain AA sequence)").strip()
+        pdb_id = None
+
     user_question = st.text_area("Your question:", "What is the function of the protein?")
     run           = st.button("🔎 Analyze")
 
