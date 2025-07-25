@@ -144,7 +144,11 @@ Return the result strictly as a JSON object with keys: "Structure", "Function", 
 
                 # Protein name and EC number
                 name = up_features.get("proteinDescription", {}).get("recommendedName", {}).get("fullName", {}).get("value", "N/A")
-                ec = up_features["proteinDescription"]["recommendedName"].get("ecNumbers", [{}])[0].get("value", "N/A")
+                ec = up_features.get("proteinDescription", {}) \
+                .get("recommendedName", {}) \
+                .get("ecNumbers", [{}])[0] \
+                .get("value", "N/A")
+
                 st.markdown(f"- **Protein Name:** {name}")
                 st.markdown(f"- **EC Number:** {ec}")
 
