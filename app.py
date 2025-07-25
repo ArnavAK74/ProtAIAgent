@@ -77,7 +77,12 @@ if run:
             up_features = fetch_uniprot_features(uniprot_id)
         else:
             uniprot_id = None
-            up_features = []
+            up_features = {
+                "features": [],
+                "comments": [],
+                "proteinDescription": {},
+                "genes": []
+            }
 
         # Sequence conservation (optional MSA)
         # msa = run_blast(sequence)
