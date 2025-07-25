@@ -73,6 +73,7 @@ if run:
         
 
         if uniprot_ids:
+            print(uniprot_ids)
             uniprot_id = uniprot_ids[0]
             up_features = fetch_uniprot_features(uniprot_id)
         else:
