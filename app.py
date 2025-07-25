@@ -37,6 +37,15 @@ with st.sidebar:
         sequence = st.text_area("Enter Protein Sequence (FASTA format or plain AA sequence)").strip()
         pdb_id = None
 
+    if sequence and not pdb_id:
+    with st.spinner("🔍 Searching for matching PDB ID..."):
+        pdb_id = get_pdb_id_from_sequence(sequence)
+        if pdb_id:
+            st.success(f"✅ Found matching PDB ID: {pdb_id}")
+        else:
+            st.error("❌ Could not find a matching PDB ID for the sequence.")
+            st.stop()
+
     user_question = st.text_area("Your question:", "What is the function of the protein?")
     run           = st.button("🔎 Analyze")
 
