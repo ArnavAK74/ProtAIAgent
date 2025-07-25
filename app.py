@@ -176,7 +176,8 @@ Return the result strictly as a JSON object with keys: "Structure", "Function", 
                 st.markdown(f"- **EC Number:** {ec}")
 
                 # Gene name
-                gene = up_features.get("genes", [{}])[0].get("geneName", {}).get("value", "N/A")
+                genes_list = up_features.get("genes", [])
+                gene = genes_list[0].get("geneName", {}).get("value", "N/A") if genes_list else "N/A"
                 st.markdown(f"- **Gene:** {gene}")
 
             with st.expander("🧬 Functional Roles (Click to expand)"):
