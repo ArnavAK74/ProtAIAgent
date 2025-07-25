@@ -93,3 +93,38 @@ def fetch_uniprot_features(uniprot_id: str) -> dict:
             "proteinDescription": {},
             "genes": []
         }
+
+def get_pdb_id_from_sequence(sequence: str) -> str | None:
+    # Clean sequence (in case it's in FASTA format)
+    if sequence.startswith(">"):
+        sequence = "\n".join(line for line in sequence.splitlines() if not line.startswith(">"))
+        sequence = sequence.replace("\n", "")
+
+    url = "https://search.rcsb.org/rcsbsearch/v2/query"
+    query = {
+        "query": {
+            "type": "terminal",
+            "service": "sequence",
+            "parameters": {
+                "evalue_cutoff": 1e-5,
+                "target": "pdb_protein_sequence",
+                "value": sequence
+            }
+        },
+        "request_options": {
+            "scoring_strategy": "sequence",
+            "return_all_hits": False
+        },
+        "return_type": "entry"
+    }
+
+    try:
+        r = requests.post(url, json=query)
+        r.raise_for_status()
+        result = r.json()
+        hits = result.get("result_set", [])
+        if hits:
+            return hits[0]["identifier"]  # Return top hit
+    except Exception as e:
+        st.warning(f"Sequence → PDB search failed: {e}")
+    return None
