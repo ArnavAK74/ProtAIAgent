@@ -13,7 +13,8 @@ from data_fetch       import (
     get_unpaywall_data,
     fetch_pdf_text,
     get_m_csa_active_sites,
-    fetch_uniprot_features
+    fetch_uniprot_features,
+    get_pdb_id_from_sequence
 )
 from structure_tools  import build_3dmol_html, find_hotspots
 from sequence_tools   import conservation_scores, run_blast
