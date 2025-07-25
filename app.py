@@ -157,7 +157,7 @@ Return the result strictly as a JSON object with keys: "Structure", "Function", 
                 st.markdown(f"- **Gene:** {gene}")
 
             with st.expander("🧬 Functional Roles (Click to expand)"):
-                for func in gpt_summary["Function"]:
+                for func in gpt_summary.get("Function", []):
                     st.markdown(f"- {func}")
 
 
@@ -215,9 +215,9 @@ Answer:"""
                     plot_domains(up_features["features"], entry["rcsb_entry_info"]["polymer_monomer_count_maximum"]),
                     use_container_width=True
                 )
-                '''with st.expander("🧬 Sequence Information (Click to expand)"):
-                    for seq in gpt_summary["Sequence"]:
-                        st.markdown(f"- {seq}")'''
+                with st.expander("🧬 Sequence Information (Click to expand)"):
+                    for seq in gpt_summarygpt_summary.get("Sequence", []):
+                        st.markdown(f"- {seq}")
 
             else:
                 st.write("🔍 No UniProt domain annotations found.")
