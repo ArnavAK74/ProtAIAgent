@@ -197,7 +197,7 @@ Return the result strictly as a JSON object with keys: "Structure", "Function", 
 
                 if pdf_url:
                     paper_text = fetch_pdf_text(pdf_url)
-                    if paper_text.strip():
+                    if paper_text.strip() and "Error" not in paper_text and "Forbidden" not in paper_text:
                         prompt = f"""
     You are an expert research assistant for protein engineers and biochemists.
     Use the paper (DOI: {doi}) to answer the question.
