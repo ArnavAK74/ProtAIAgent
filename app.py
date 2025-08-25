@@ -32,7 +32,7 @@ with st.sidebar:
     st.header("🔍 Input")
     input_type = st.radio("Select Input Type:", ["PDB ID", "Protein Sequence"])
     if input_type == "PDB ID":
-        pdb_id = st.text_input("Enter PDB ID (e.g., 1LYZ)").strip()
+        pdb_id = st.text_input("Enter PDB ID (e.g., 6B5X)").strip()
         sequence = None
     else:
         sequence = st.text_area("Enter Protein Sequence (FASTA format or plain AA sequence)").strip()
